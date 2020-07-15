@@ -95,7 +95,12 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.common.orange
   },
   drawerItemSelected: {
-    opacity: 1
+    '& .MuiListItemText-root': {
+      opacity: 1
+    }
+  },
+  appbar: {
+    zIndex: theme.zIndex.modal + 1
   }
 }));
 
@@ -221,10 +226,11 @@ const Header = () => {
         classes={{ paper: classes.menu }}
         MenuListProps={{ onMouseLeave: handleClose }}
         elevation={0}
+        style={{ zIndex: 1302 }}
       >
         {menuOptions.map((option, i) =>
           <MenuItem
-            key={option}
+            key={`${option}${i}`}
             component={Link}
             to={option.link}
             classes={{ root: classes.menuItem }}
@@ -252,6 +258,7 @@ const Header = () => {
         onOpen={() => setOpenDrawer(true)}
         classes={{ paper: classes.drawer }}
       >
+        <div className={classes.toolbarMargin} />
         <List disablePadding>
           {routes.map(route =>
             <ListItem
@@ -261,19 +268,13 @@ const Header = () => {
               component={Link}
               to={route.link}
               selected={value === route.activeIndex}
+              classes={{ selected: classes.drawerItemSelected }}
               onClick={() => {
                 setOpenDrawer(false);
                 setValue(route.activeIndex);
               }}
             >
-              <ListItemText
-                className={
-                  value === route.activeIndex
-                    ? [classes.drawerItem, classes.drawerItemSelected]
-                    : classes.drawerItem
-                }
-                disableTypography
-              >
+              <ListItemText className={classes.drawerItem} disableTypography>
                 {route.name}
               </ListItemText>
             </ListItem>
@@ -288,16 +289,12 @@ const Header = () => {
             component={Link}
             to="/estimate"
             selected={value === 5}
-            className={classes.drawerItemEstimate}
+            classes={{
+              root: classes.drawerItemEstimate,
+              selected: classes.drawerItemSelected
+            }}
           >
-            <ListItemText
-              className={
-                value === 5
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-              disableTypography
-            >
+            <ListItemText className={classes.drawerItem} disableTypography>
               Free Estimate
             </ListItemText>
           </ListItem>
@@ -315,7 +312,7 @@ const Header = () => {
 
   return (
     <Fragment>
-      <AppBar position="fixed">
+      <AppBar position="fixed" className={classes.appbar}>
         <Toolbar disableGutters>
           <Button
             component={Link}
