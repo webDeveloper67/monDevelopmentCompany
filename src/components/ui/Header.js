@@ -68,11 +68,16 @@ const useStyles = makeStyles(theme => ({
     opacity: 0.7,
     '&:hover': {
       opacity: 1
-    },
-    drawerIconContainer: {
-      '&:hover': {
-        backgroundColor: 'transparent'
-      }
+    }
+  },
+  drawerIcon: {
+    width: '50px',
+    height: '50px'
+  },
+  drawerIconContainer: {
+    marginLeft: 'auto',
+    '&:hover': {
+      backgroundColor: 'transparent'
     }
   }
 }));
@@ -278,7 +283,7 @@ const Header = () => {
         onClick={() => setOpenDrawer(!openDrawer)}
         disableRipple
       >
-        <MenuIcon />
+        <MenuIcon className={classes.drawerIcon} />
       </IconButton>
     </Fragment>
   );
