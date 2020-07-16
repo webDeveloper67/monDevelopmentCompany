@@ -9,6 +9,7 @@ import theme from './ui/Theme';
 
 // Components
 import Header from '../components/ui/Header';
+import Footer from '../components/ui/Footer';
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
           <Route exact path="/contact" component={() => <div>contact</div>} />
           <Route exact path="/estimate" component={() => <div>estimate</div>} />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );
