@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // MUI Stuff
@@ -12,10 +12,18 @@ import Header from '../components/ui/Header';
 import Footer from '../components/ui/Footer';
 
 const App = () => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [value, setValue] = useState(0);
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header />
+        <Header
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+          value={value}
+          setValue={setValue}
+        />
         <Switch>
           <Route exact path="/" component={() => <div>Home</div>} />
           <Route exact path="/services" component={() => <div>services</div>} />
@@ -39,7 +47,12 @@ const App = () => {
           <Route exact path="/contact" component={() => <div>contact</div>} />
           <Route exact path="/estimate" component={() => <div>estimate</div>} />
         </Switch>
-        <Footer />
+        <Footer
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+          value={value}
+          setValue={setValue}
+        />
       </BrowserRouter>
     </ThemeProvider>
   );
