@@ -10,6 +10,7 @@ import theme from './ui/Theme';
 // Components
 import Header from '../components/ui/Header';
 import Footer from '../components/ui/Footer';
+import LandingPage from '../components/LandingPage';
 
 const App = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -25,7 +26,7 @@ const App = () => {
           setValue={setValue}
         />
         <Switch>
-          <Route exact path="/" component={() => <div>Home</div>} />
+          <Route exact path="/" component={LandingPage} />
           <Route exact path="/services" component={() => <div>services</div>} />
           <Route
             exact
