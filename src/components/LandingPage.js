@@ -1,6 +1,6 @@
 import React from 'react';
 import Lottie from 'react-lottie';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -13,11 +13,39 @@ const useStyles = makeStyles(theme => ({
     minHeight: '21em',
     marginTop: '2em',
     marginLeft: '10%'
+  },
+  estimateButton: {
+    ...theme.typography.estimate,
+    backgroundColor: theme.palette.common.orange,
+    borderRadius: 50,
+    height: '45px',
+    width: '145px',
+    marginRight: '40px',
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.light
+    }
+  },
+  buttonContainer: {
+    marginTop: '1em'
+  },
+  learnButtonHero: {
+    borderColor: theme.palette.common.blue,
+    color: theme.palette.common.blue,
+    borderWidth: 2,
+    textTransform: 'none',
+    borderRadius: 50,
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
+    fontSize: '0.9rem',
+    height: 45,
+    width: 145
   }
 }));
 
 const LandingPage = () => {
   const classes = useStyles();
+
+  const theme = useTheme();
 
   const defaultOptions = {
     loop: true,
@@ -37,14 +65,24 @@ const LandingPage = () => {
               Bringing West Coast Technology to the Midwest
             </Typography>
 
-            <Grid container>
+            <Grid
+              container
+              justify="center"
+              className={classes.buttonContainer}
+            >
               <Grid item>
-                <Button variant="contained">Free Estimate</Button>
+                <Button className={classes.estimateButton} variant="contained">
+                  Free Estimate
+                </Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined">
+                <Button variant="outlined" className={classes.learnButtonHero}>
                   Learn More
-                  <ButtonArrow height={15} width={15} fill="red" />
+                  <ButtonArrow
+                    height={15}
+                    width={15}
+                    fill={theme.palette.common.blue}
+                  />
                 </Button>
               </Grid>
             </Grid>
