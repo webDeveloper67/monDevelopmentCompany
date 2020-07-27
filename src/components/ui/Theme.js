@@ -2,18 +2,19 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 const monBlue = '#0B72B9';
 const monOrange = '#FFBA60';
+const monGrey = '#868686';
 
 export default createMuiTheme({
   palette: {
     common: {
-      blue: `${monBlue}`,
-      orange: `${monOrange}`
+      blue: monBlue,
+      orange: monOrange
     },
     primary: {
-      main: `${monBlue}`
+      main: monBlue
     },
     secondary: {
-      main: `${monOrange}`
+      main: monOrange
     }
   },
   typography: {
@@ -33,8 +34,28 @@ export default createMuiTheme({
       fontFamily: 'Raleway',
       fontWeight: 700,
       fontSize: '2.5rem',
-      color: `${monBlue}`,
+      color: monBlue,
       lineHeight: 1.5
+    },
+    h4: {
+      fontFamily: 'Raleway',
+      fontSize: '1.75rem',
+      color: monBlue,
+      fontWeight: 700
+    },
+    subtitle1: {
+      fontSize: '1.25rem',
+      fontWeight: 300,
+      color: monGrey
+    },
+    learnButton: {
+      borderColor: monBlue,
+      color: monBlue,
+      borderWidth: 2,
+      textTransform: 'none',
+      borderRadius: 50,
+      fontFamily: 'Roboto',
+      fontWeight: 'bold'
     }
   }
 });
