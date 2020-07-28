@@ -5,9 +5,11 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ButtonArrow from '../components/ui/ButtonArrow';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
+import mobileAppsIcon from '../assets/mobileIcon.svg';
 
 const useStyles = makeStyles(theme => ({
   animation: {
@@ -43,7 +45,10 @@ const useStyles = makeStyles(theme => ({
     ...theme.typography.learnButton,
     fontSize: '0.7rem',
     height: 35,
-    padding: 5
+    padding: 5,
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: '2em'
+    }
   },
   mainContainer: {
     marginTop: '5em',
@@ -67,6 +72,18 @@ const useStyles = makeStyles(theme => ({
   },
   subtitle: {
     marginBottom: '1em'
+  },
+  icon: {
+    marginLeft: '2em',
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: 0
+    }
+  },
+  serviceContainer: {
+    marginTop: '12em',
+    [theme.breakpoints.down('sm')]: {
+      padding: 25
+    }
   }
 }));
 
@@ -74,6 +91,8 @@ const LandingPage = () => {
   const classes = useStyles();
 
   const theme = useTheme();
+
+  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   const defaultOptions = {
     loop: true,
@@ -123,10 +142,21 @@ const LandingPage = () => {
       </Grid>
       {/* Hero Block Content */}
 
-      {/* Services Block Content */}
+      {/* custom software Block Content */}
       <Grid item>
-        <Grid container direction="row">
-          <Grid item>
+        <Grid
+          container
+          direction="row"
+          className={classes.serviceContainer}
+          justify={matchesSM ? 'center' : undefined}
+        >
+          <Grid
+            item
+            style={{
+              marginLeft: matchesSM ? 0 : '5em',
+              textAlign: matchesSM ? 'center' : undefined
+            }}
+          >
             <Typography variant="h4">Custom Software Development</Typography>
             <Typography variant="subtitle1" className={classes.subtitle}>
               Save Energy. Save Time. Save Money.
@@ -146,11 +176,58 @@ const LandingPage = () => {
           </Grid>
 
           <Grid item>
-            <img alt="custom software icon" src={customSoftwareIcon} />
+            <img
+              alt="custom software icon"
+              src={customSoftwareIcon}
+              className={classes.icon}
+            />
           </Grid>
         </Grid>
       </Grid>
-      {/* Services Block Content */}
+      {/* custom software Block Content */}
+
+      {/* IOS/Android Block */}
+      <Grid item>
+        <Grid
+          container
+          direction="row"
+          className={classes.serviceContainer}
+          justify={matchesSM ? 'center' : 'flex-end'}
+        >
+          <Grid
+            item
+            style={{
+              textAlign: matchesSM ? 'center' : undefined
+            }}
+          >
+            <Typography variant="h4">IOS/Android App Development</Typography>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Extend Functionality. Extend Access. Increase Engagement.
+            </Typography>
+            <Typography variant="subtitle1">
+              Integrate your web experience or create a standalone app{matchesSM ? null : <br />}{' '}
+              with either mobile platform.
+            </Typography>
+            <Button variant="outlined" className={classes.learnButton}>
+              <span style={{ marginRight: 10 }}>Learn More</span>
+              <ButtonArrow
+                width={10}
+                height={10}
+                fill={theme.palette.common.blue}
+              />
+            </Button>
+          </Grid>
+
+          <Grid item style={{ marginRight: matchesSM ? 0 : '5em' }}>
+            <img
+              alt="ios android phones"
+              src={mobileAppsIcon}
+              className={classes.icon}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      {/* IOS/Android Block */}
     </Grid>
   );
 };
