@@ -9,12 +9,16 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
+// Components
+import CallToAction from './ui/CallToAction';
+
 // Icons
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
 import mobileAppsIcon from '../assets/mobileIcon.svg';
 import websitesIcon from '../assets/websiteIcon.svg';
 import revolutionBackground from '../assets/repeatingBackground.svg';
+import infoBackground from '../assets/infoBackground.svg';
 
 const useStyles = makeStyles(theme => ({
   animation: {
@@ -102,7 +106,23 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     boxShadow: theme.shadows[10],
     borderRadius: 15,
-    padding: '10em'
+    padding: '10em',
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '8em',
+      paddingBottom: '8em',
+      paddingLeft: 0,
+      paddingRight: 0,
+      borderRadius: 0,
+      width: '100%'
+    }
+  },
+  infoBackground: {
+    backgroundImage: `url(${infoBackground})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    height: '100%',
+    width: '100%'
   }
 }));
 
@@ -112,6 +132,7 @@ const LandingPage = () => {
   const theme = useTheme();
 
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   const defaultOptions = {
     loop: true,
@@ -307,7 +328,9 @@ const LandingPage = () => {
                 style={{ textAlign: 'center' }}
               >
                 <Grid item>
-                  <Typography variant="h3">The Revolution</Typography>
+                  <Typography variant="h3" gutterBottom>
+                    The Revolution
+                  </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="subtitle1">
@@ -330,6 +353,90 @@ const LandingPage = () => {
         </Grid>
       </Grid>
       {/* Revolution Block */}
+
+      {/* Information Block */}
+      <Grid item>
+        <Grid
+          container
+          style={{ height: '80em' }}
+          alignItems="center"
+          direction="row"
+        >
+          <Grid
+            item
+            container
+            style={{
+              position: 'absolute',
+              textAlign: matchesXS ? 'center' : 'inherit'
+            }}
+            direction={matchesXS ? 'column' : 'row'}
+            spacing={matchesXS ? 10 : 0}
+          >
+            {/* About Section */}
+            <Grid
+              item
+              sm
+              style={{ marginLeft: matchesXS ? 0 : matchesSM ? '2em' : '5em' }}
+            >
+              <Grid container direction="column">
+                <Typography variant="h2" style={{ color: 'white' }}>
+                  About Us
+                </Typography>
+                <Typography variant="subtitle2">Let's get personal.</Typography>
+                <Grid item>
+                  <Button
+                    variant="outlined"
+                    style={{ color: 'white', borderColor: 'white' }}
+                    className={classes.learnButton}
+                  >
+                    <span style={{ marginRight: 10 }}>Learn More</span>
+                    <ButtonArrow width={10} height={10} fill="white" />
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+            {/* Contact Section */}
+            <Grid
+              item
+              sm
+              style={{
+                marginRight: matchesXS ? 0 : matchesSM ? '2em' : '5em',
+                textAlign: matchesXS ? 'center' : 'right'
+              }}
+            >
+              <Grid container direction="column">
+                <Typography variant="h2" style={{ color: 'white' }}>
+                  Contact Us
+                </Typography>
+                <Typography variant="subtitle2">
+                  Say hello!{' '}
+                  <span role="img" aria-label="waving hand">
+                    👍
+                  </span>
+                </Typography>
+                <Grid item>
+                  <Button
+                    variant="outlined"
+                    style={{ color: 'white', borderColor: 'white' }}
+                    className={classes.learnButton}
+                  >
+                    <span style={{ marginRight: 10 }}>Learn More</span>
+                    <ButtonArrow width={10} height={10} fill="white" />
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+          <div className={classes.infoBackground} />
+        </Grid>
+      </Grid>
+      {/* Information Block */}
+
+      {/* Call To Action  */}
+      <Grid item>
+        <CallToAction />
+      </Grid>
+      {/* Call To Action  */}
     </Grid>
   );
 };
