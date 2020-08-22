@@ -26,7 +26,16 @@ const App = () => {
           setValue={setValue}
         />
         <Switch>
-          <Route exact path="/" component={LandingPage} />
+          <Route
+            exact
+            path="/"
+            render={props =>
+              <LandingPage
+                {...props}
+                setSelectedIndex={setSelectedIndex}
+                setValue={setValue}
+              />}
+          />
           <Route exact path="/services" component={() => <div>services</div>} />
           <Route
             exact
@@ -48,12 +57,7 @@ const App = () => {
           <Route exact path="/contact" component={() => <div>contact</div>} />
           <Route exact path="/estimate" component={() => <div>estimate</div>} />
         </Switch>
-        <Footer
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-          value={value}
-          setValue={setValue}
-        />
+        <Footer setSelectedIndex={setSelectedIndex} setValue={setValue} />
       </BrowserRouter>
     </ThemeProvider>
   );
