@@ -11,6 +11,7 @@ import theme from './ui/Theme';
 import Header from '../components/ui/Header';
 import Footer from '../components/ui/Footer';
 import LandingPage from '../components/LandingPage';
+import Services from './Services';
 
 const App = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -36,7 +37,16 @@ const App = () => {
                 setValue={setValue}
               />}
           />
-          <Route exact path="/services" component={() => <div>services</div>} />
+          <Route
+            exact
+            path="/services"
+            render={props =>
+              <Services
+                {...props}
+                setSelectedIndex={setSelectedIndex}
+                setValue={setValue}
+              />}
+          />
           <Route
             exact
             path="/customsoftware"
