@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   serviceContainer: {
-    marginTop: '12em',
+    marginTop: '10em',
     [theme.breakpoints.down('sm')]: {
       padding: 25
     }
@@ -50,6 +50,76 @@ const Services = ({ setValue, setSelectedIndex }) => {
 
   return (
     <Grid container direction="column">
+      <Grid
+        item
+        style={{
+          marginLeft: matchesSM ? 0 : '5em',
+          marginTop: matchesSM ? '1em' : '2em'
+        }}
+      >
+        <Typography
+          align={matchesSM ? 'center' : undefined}
+          gutterBottom
+          variant="h2"
+        >
+          Services
+        </Typography>
+      </Grid>
+      {/* IOS/Android Block */}
+      <Grid item>
+        <Grid
+          container
+          direction="row"
+          className={classes.serviceContainer}
+          justify={matchesSM ? 'center' : 'flex-end'}
+          style={{ marginTop: matchesSM ? '1em' : '5em' }}
+        >
+          <Grid
+            item
+            style={{
+              textAlign: matchesSM ? 'center' : undefined,
+              width: matchesSM ? undefined : '35em'
+            }}
+          >
+            <Typography variant="h4">IOS/Android App Development</Typography>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Extend Functionality. Extend Access. Increase Engagement.
+            </Typography>
+            <Typography variant="subtitle1">
+              Integrate your web experience or create a standalone app{matchesSM ? null : <br />}{' '}
+              with either mobile platform.
+            </Typography>
+            <Button
+              component={Link}
+              to="/mobileapps"
+              variant="outlined"
+              className={classes.learnButton}
+              onClick={() => {
+                setValue(1);
+                setSelectedIndex(2);
+              }}
+            >
+              <span style={{ marginRight: 10 }}>Learn More</span>
+              <ButtonArrow
+                width={10}
+                height={10}
+                fill={theme.palette.common.blue}
+              />
+            </Button>
+          </Grid>
+
+          <Grid item style={{ marginRight: matchesSM ? 0 : '5em' }}>
+            <img
+              alt="ios android phones"
+              src={mobileAppsIcon}
+              className={classes.icon}
+              width="250em"
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      {/* IOS/Android Block */}
+
       <Grid item>
         <Grid
           container
@@ -102,71 +172,20 @@ const Services = ({ setValue, setSelectedIndex }) => {
       </Grid>
       {/* custom software Block Content */}
 
-      {/* IOS/Android Block */}
-      <Grid item>
-        <Grid
-          container
-          direction="row"
-          className={classes.serviceContainer}
-          justify={matchesSM ? 'center' : 'flex-end'}
-        >
-          <Grid
-            item
-            style={{
-              textAlign: matchesSM ? 'center' : undefined
-            }}
-          >
-            <Typography variant="h4">IOS/Android App Development</Typography>
-            <Typography variant="subtitle1" className={classes.subtitle}>
-              Extend Functionality. Extend Access. Increase Engagement.
-            </Typography>
-            <Typography variant="subtitle1">
-              Integrate your web experience or create a standalone app{matchesSM ? null : <br />}{' '}
-              with either mobile platform.
-            </Typography>
-            <Button
-              component={Link}
-              to="/mobileapps"
-              variant="outlined"
-              className={classes.learnButton}
-              onClick={() => {
-                setValue(1);
-                setSelectedIndex(2);
-              }}
-            >
-              <span style={{ marginRight: 10 }}>Learn More</span>
-              <ButtonArrow
-                width={10}
-                height={10}
-                fill={theme.palette.common.blue}
-              />
-            </Button>
-          </Grid>
-
-          <Grid item style={{ marginRight: matchesSM ? 0 : '5em' }}>
-            <img
-              alt="ios android phones"
-              src={mobileAppsIcon}
-              className={classes.icon}
-            />
-          </Grid>
-        </Grid>
-      </Grid>
-      {/* IOS/Android Block */}
-
       {/* website Block */}
       <Grid item>
         <Grid
           container
           direction="row"
           className={classes.serviceContainer}
-          justify={matchesSM ? 'center' : undefined}
+          justify={matchesSM ? 'center' : 'flex-end'}
+          style={{ marginBottom: '10em' }}
         >
           <Grid
             item
             style={{
-              marginLeft: matchesSM ? 0 : '5em',
-              textAlign: matchesSM ? 'center' : undefined
+              textAlign: matchesSM ? 'center' : undefined,
+              width: matchesSM ? undefined : '35em'
             }}
           >
             <Typography variant="h4">Website Development</Typography>
@@ -195,11 +214,12 @@ const Services = ({ setValue, setSelectedIndex }) => {
             </Button>
           </Grid>
 
-          <Grid item>
+          <Grid item style={{ marginRight: matchesSM ? 0 : '5em' }}>
             <img
               alt="website icon"
               src={websitesIcon}
               className={classes.icon}
+              width="250em"
             />
           </Grid>
         </Grid>
